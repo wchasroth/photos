@@ -32,7 +32,7 @@
       {if $record.thu != ""}
          <img src='{$page}/{$record.thu}'><br/>
       {else}
-         <img src='Albums/_Icons/nothumb.png'><br/>
+         <img src='Icons/nothumb.png'><br/>
       {/if}
       </a>
       <br/>
