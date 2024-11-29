@@ -1,0 +1,11 @@
+{
+    "require": {
+        "smarty/smarty": "^5.4"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "charlesroth_net\\Utils\\": "src"
+        }
+    }
+}
