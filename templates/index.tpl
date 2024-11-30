@@ -18,13 +18,15 @@
 <tr valign='top'>
 
 {foreach $fileDict as $record}
-   {if $record@iteration is div by 4}
+   {if ($record@iteration -1) is div by 4}
       </tr><tr valign='top'>
    {/if}
 
    <td style="position: relative; padding: .5em;">
       {if $record.dir != ""}
          <a href="index.php?page={$page}/{$record.dir}">
+      {elseif $record.lnk != ""}
+         <a href="{$record.lnk}">
       {else}
          <a href="{$page}/{$record.img}">
       {/if}
@@ -38,11 +40,13 @@
       <br/>
    
       <div style="position: absolute; bottom: 0; text-align: center; width: 100%;">
-         {if $record.dir != ""}
-            {$record.dir}<br/>
-         {else}
-            {$record.img}</br>
-         {/if}
+         <span style="white-space: nowrap;">
+            {if     $record.dir != ""} {$record.dir} 
+            {elseif $record.lnk != ""} External Link
+            {else}                     {$record.img}
+            {/if}
+         </span>
+         <br/>
       </div>
    </td>
 {/foreach}
