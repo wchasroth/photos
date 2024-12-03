@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if test "x$2" = "x"; then
+   echo "Usage: thumb subfolder.dir filename" >&2
+   exit
+fi
+
+if test ! -d $1; then
+   echo "$1 is not a directory" >&2
+   exit
+fi
+
+if test ! -f $1/$2; then
+   echo "$1/$2 does not exist" >&2
+   exit
+fi
+
+folder=`basename $1 .dir`
+filename="$2"
+ext="${filename##*.}"
+thumb=`echo "$2" | sed "s/\.img\./.thu./"`
+
+cp $1/$thumb $folder.thu.$ext

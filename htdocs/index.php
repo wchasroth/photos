@@ -16,7 +16,9 @@
       $prevUri = "$prevUri$item/";
    }
 
-   $files = scandir($dir);
+   $order = SCANDIR_SORT_ASCENDING;
+   if (str_ends_with($dir, ".rev.dir")) $order = SCANDIR_SORT_DESCENDING;
+   $files = scandir($dir, $order);
    $fileDict = array();
    foreach ($files as $file)  addFileEntry($fileDict, $file, $dir);
 

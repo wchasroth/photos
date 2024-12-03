@@ -10,15 +10,45 @@ if test ! -d $1; then
    exit
 fi
 
+echo "Fixing $1 ..."
+
 cd $1
-ls *.JPG | (
+ls IMG_* 2>/dev/null | (
+   while read x; do
+      new=`echo $x | sed "s/^IMG_//"`
+      mv $x $new
+   done
+)
+
+ls *.JPG 2>/dev/null | (
    while read x; do
       base=`basename $x .JPG`
       mv $base.JPG $base.jpg
    done
 )
 
-ls *.jpg | grep -v "\.img.jpg" | grep -v "\.thu.jpg" | (
+ls *.JPEG 2>/dev/null | (
+   while read x; do
+      base=`basename $x .JPEG`
+      mv $base.JPEG $base.jpg
+   done
+)
+
+ls *.jpeg 2>/dev/null | (
+   while read x; do
+      base=`basename $x .jpeg`
+      mv $base.jpeg $base.jpg
+   done
+)
+
+ls *.PNG 2>/dev/null | (
+   while read x; do
+      base=`basename $x .PNG`
+      mv $base.PNG $base.png
+   done
+)
+
+ls *.jpg 2>/dev/null | grep -v "\.img.jpg" | grep -v "\.thu.jpg" | (
    while read x; do
       base=`basename $x .jpg`
       convert $x -resize 200x200 $base.thu.jpg
@@ -26,7 +56,23 @@ ls *.jpg | grep -v "\.img.jpg" | grep -v "\.thu.jpg" | (
    done
 )
 
-ls *.mp4 | grep -v "\.img.mp4" | grep -v "\.thu.jpg" | (
+ls *.png 2>/dev/null | grep -v "\.img.png" | grep -v "\.thu.png" | (
+   while read x; do
+      base=`basename $x .png`
+      convert $x -resize 200x200 $base.thu.png
+      mv $base.png $base.img.png
+   done
+)
+
+ls *.gif 2>/dev/null | grep -v "\.img.gif" | grep -v "\.thu.gif" | (
+   while read x; do
+      base=`basename $x .gif`
+      convert $x -resize 200x200 $base.thu.gif
+      mv $base.gif $base.img.gif
+   done
+)
+
+ls *.mp4 2>/dev/null | grep -v "\.img.mp4" | grep -v "\.thu.jpg" | (
    while read x; do
       base=`basename $x .mp4`
       mv $base.mp4 $base.img.mp4
@@ -37,5 +83,14 @@ ls *.mp4 | grep -v "\.img.mp4" | grep -v "\.thu.jpg" | (
    done
 )
 
-#15-709324340-video.mp4
-#15-709324340-video.png
+for x in *-video.img.mp4; do
+   img=`basename $x .mp4`
+   rm -f $img.png
+   short=`basename $img .img`
+   ls $short.* 2>/dev/null | (
+      while read y; do
+         new=`echo $y | sed "s/-video//"`
+         mv $y $new
+      done
+   )
+done
