@@ -4,7 +4,7 @@
    use Smarty\Smarty;
 
    class SmartyPage extends Smarty {
-      function __construct() {
+      function __construct($debug = false) {
          parent::__construct();
 
          $this->setTemplateDir('../templates/');
@@ -13,6 +13,6 @@
          $this->setCacheDir   ('../cache/');
 
          $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
-//       $this->debugging = true;
+         $this->debugging = $debug;
        }
    }

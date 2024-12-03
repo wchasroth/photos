@@ -4,8 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff10447d7323b4340562ee43425720d7",
+    "content-hash": "c4b8ee2784fc4a5bf0ccf34100bc05b8",
     "packages": [
+        {
+            "name": "charlesrothdotnet/alfred",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wchasroth/Alfred.git",
+                "reference": "0f4231d859357410f4c46a78472fe787439c8437"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wchasroth/Alfred/zipball/0f4231d859357410f4c46a78472fe787439c8437",
+                "reference": "0f4231d859357410f4c46a78472fe787439c8437",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CharlesRothDotNet\\Alfred\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "simple utility library for php work",
+            "support": {
+                "email": "wchasroth@gmail.com",
+                "issues": "https://github.com/wchasroth/Alfred/issues",
+                "source": "https://github.com/wchasroth/Alfred/tree/main"
+            },
+            "time": "2024-12-03T19:00:48+00:00"
+        },
         {
             "name": "smarty/smarty",
             "version": "v5.4.2",
@@ -160,7 +199,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "charlesrothdotnet/alfred": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},

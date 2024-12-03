@@ -2,6 +2,8 @@
    use charlesroth_net\Utils\SmartyPage;
    use charlesroth_net\Utils\Env;
 
+   use CharlesRothDotNet\Alfred\Str;
+
    require_once('../vendor/autoload.php');
 
    $env = Env::getEnv();
@@ -11,7 +13,7 @@
    $breadcrumb = array();
    $prevUri = "";
    foreach (explode("/", $page) as $item) {
-      $itemRecord = array("uri" => "index.php?page=$prevUri$item", "label" => substringBefore($item, ".dir"));
+      $itemRecord = array("uri" => "index.php?page=$prevUri$item", "label" => Str::substringBefore($item, ".dir"));
       $breadcrumb[] = $itemRecord;
       $prevUri = "$prevUri$item/";
    }
@@ -38,7 +40,7 @@
       if (str_starts_with($fileName, "."))  return;
       if (str_starts_with($fileName, "_"))  return;
 
-      $basename = substringBefore($fileName, ".");
+      $basename = Str::substringBefore($fileName, ".");
       if (! array_key_exists($basename, $fileDict)) {
          $fileRecord = array("dir" => "", "img" => "", "thu" => "", "txt" => "", "lnk" => "");
          $fileDict[$basename] = $fileRecord;
@@ -51,10 +53,3 @@
       elseif (str_contains ($fileName, ".thu."))  $fileRecord['thu'] = $fileName;
       elseif (str_contains ($fileName, ".txt."))  $fileRecord['txt'] = $fileName; // should be contents of file!
    }
-
-   function substringBefore (string $text, string $delimiter): string {
-      $pos = strpos($text, $delimiter);
-      if ($pos === false)  return $text;
-      return substr($text, 0, $pos);
-   }
-

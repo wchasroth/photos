@@ -1,6 +1,7 @@
 {
     "require": {
-        "smarty/smarty": "^5.4"
+        "smarty/smarty": "^5.4",
+        "charlesrothdotnet/alfred": "dev-main"
     },
 
     "autoload": {
