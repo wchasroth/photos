@@ -1,8 +1,8 @@
 <?php
-   use charlesroth_net\Utils\SmartyPage;
    use charlesroth_net\Utils\Env;
 
    use CharlesRothDotNet\Alfred\Str;
+   use CharlesRothDotNet\Alfred\SmartyPage;
 
    require_once('../vendor/autoload.php');
 
