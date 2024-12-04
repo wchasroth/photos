@@ -3,11 +3,12 @@
 
    use CharlesRothDotNet\Alfred\Str;
    use CharlesRothDotNet\Alfred\SmartyPage;
+   use CharlesRothDotNet\Alfred\HttpGet;
 
    require_once('../vendor/autoload.php');
 
    $env = Env::getEnv();
-   $page = getGet('page', "Albums");
+   $page = HttpGet::value('page', "Albums");
    $dir = $env['path'] . $page;
 
    $breadcrumb = array();
@@ -30,11 +31,6 @@
    $smarty->assign("page", $page);
    $smarty->assign("dir", $dir);
    $smarty->display("index.tpl");
-
-   function getGet(string $name, $default): string {
-      if (empty($name))  return "";
-      return isset($_GET[$name])  ? trim($_GET[$name])  : $default;
-   }
 
    function addFileEntry (&$fileDict, string $fileName, string $dir): void {
       if (str_starts_with($fileName, "."))  return;
