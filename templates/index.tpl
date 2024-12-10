@@ -9,9 +9,15 @@
 <body>
 
 {assign var="separator" value=""}
+&nbsp;&nbsp;
 {foreach $breadcrumb as $crumb}
-   {$separator} <a href="{$crumb.uri}">{$crumb.label}</a>
-   {assign var="separator" value="=&gt;"}
+   {$separator}
+   {if $crumb@last}
+      {$crumb.label}
+   {else}
+      <a href="{$crumb.uri}">{$crumb.label}</a>
+   {/if}
+   {assign var="separator" value=" | "}
 {/foreach}
 
 <table border='0'>
@@ -22,7 +28,7 @@
       </tr><tr valign='top'>
    {/if}
 
-   <td style="position: relative; padding: .5em;">
+   <td align='center' style="padding: .5em;">
       {if $record.dir != ""}
          <a href="index.php?page={$page}/{$record.dir}">
       {elseif $record.lnk != ""}
@@ -37,17 +43,14 @@
          <img src='Icons/nothumb.png'><br/>
       {/if}
       </a>
-      <br/>
    
-      <div style="position: absolute; bottom: 0; text-align: center; width: 100%;">
-         <span style="white-space: nowrap;">
-            {if     $record.dir != ""} {$record.dir} 
-            {elseif $record.lnk != ""} External Link
-            {else}                     {$record.img}
-            {/if}
-         </span>
-         <br/>
-      </div>
+      <span style="white-space: nowrap;">
+         {if     $record.dir != ""} {$record.dir} 
+         {elseif $record.lnk != ""} External Link
+         {else}                     {$record.img}
+         {/if}
+      </span>
+      <br/>
    </td>
 {/foreach}
 </tr>

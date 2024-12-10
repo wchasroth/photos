@@ -51,7 +51,8 @@ ls *.PNG 2>/dev/null | (
 ls *.jpg 2>/dev/null | grep -v "\.img.jpg" | grep -v "\.thu.jpg" | (
    while read x; do
       base=`basename $x .jpg`
-      convert $x -resize 200x200 $base.thu.jpg
+#     convert $x -resize 200x200 $base.thu.jpg
+      convert $x -resize 200x200^ -gravity Center -extent 200x200  $base.thu.jpg
       mv $base.jpg $base.img.jpg
    done
 )

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if test "x$1" = "x"; then
+   echo "Usage: newthumb directoryName" >&2
+   exit
+fi
+
+if test ! -d $1; then
+   echo "$1 must be a directory."  >&2
+   exit
+fi
+
+echo "Making new thumbnails for $1 ..."
+
+cd $1
+
+ls *.img.jpg 2>/dev/null | (
+   while read x; do
+      base=`basename $x    .img.jpg`
+      if test ! -f $base.thu.jpg; then
+         convert $x -resize 200x200^ -gravity Center -extent 200x200  $base.thu.jpg
+      fi
+   done
+)
+
+ls *.img.png 2>/dev/null | (
+   while read x; do
+      base=`basename $x    .img.png`
+      if test ! -f $base.thu.png; then
+         convert $x -resize 200x200^ -gravity Center -extent 200x200  $base.thu.png
+      fi
+   done
+)
+
+ls *.img.gif 2>/dev/null | (
+   while read x; do
+      base=`basename $x    .img.gif`
+      if test ! -f $base.thu.gif; then
+         convert $x -resize 200x200^ -gravity Center -extent 200x200  $base.thu.gif
+      fi
+   done
+)
+
+ls *.img.mp4 2>/dev/null | (
+   while read x; do
+      base=`basename $x    .img.mp4`
+      if test ! -f $base.thu.jpg; then
+#        ffmpeg -ss 00:00:01 -i $x -frames:v 1 -q:v 2 temp.jpg >/dev/null 2>/dev/null
+         echo $x
+         ffmpeg -ss 00:00:01 -i $x -frames:v 1 -q:v 2 temp.jpg
+         sleep 1
+         if test -f temp.jpg; then
+            convert temp.jpg -resize 200x200^ -gravity Center -extent 200x200  $base.thu.jpg
+         fi
+         rm -f temp.jpg
+      fi
+   done
+)

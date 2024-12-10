@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if test "x$1" = "x"; then
+   echo "Usage: rotate filename.jpg" >&2
+   exit
+fi
+
+convert $1 -rotate 90 $1.rot
+cp $1 backup.$1
+mv $1.rot $1
