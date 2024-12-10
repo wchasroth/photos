@@ -44,7 +44,8 @@
       {/if}
       </a>
    
-      <span style="white-space: nowrap;">
+      <!-- <span style="white-space: nowrap;"> -->
+      <span>
          {if     $record.dir != ""} {$record.dir} 
          {elseif $record.lnk != ""} External Link
          {else}                     {$record.img}
