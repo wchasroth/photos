@@ -6,19 +6,28 @@
       body, td, div { font-family: 'Roboto', sans-serif; }
    </style>
 </head>
-<body>
+<body style="margin-top: 0;  padding-top: 0;">
 
-{assign var="separator" value=""}
-&nbsp;&nbsp;
-{foreach $breadcrumb as $crumb}
-   {$separator}
-   {if $crumb@last}
-      {$crumb.label}
-   {else}
-      <a href="{$crumb.uri}">{$crumb.label}</a>
-   {/if}
-   {assign var="separator" value=" | "}
-{/foreach}
+<!-- So that images can scroll "under", leaving the breadcrumb trail always visible at the top. -->
+<div style="position: fixed; z-index: 1; background-color: white; width: 100%;  padding-top: 1em;">
+   {assign var="separator" value=""}
+   &nbsp;&nbsp;
+   {foreach $breadcrumb as $crumb}
+      {$separator}
+      {if $crumb@last}
+         <a href="#top">{$crumb.label}</a>
+      {else}
+         <a href="{$crumb.uri}">{$crumb.label}</a>
+      {/if}
+      {assign var="separator" value=" | "}
+   {/foreach}
+   <br>&nbsp;
+</div>
+
+<div>
+<a name="top"><p>&nbsp;</p></a>
+</div>
+
 
 <table border='0'>
 <tr valign='top'>

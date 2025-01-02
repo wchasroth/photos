@@ -1,0 +1,13 @@
+AuthUserFile   /home/photos/passwd
+AuthGroupFile  /dev/null
+AuthName       Photos
+AuthType       Basic
+
+<Limit GET>
+   require valid-user
+</Limit>
+
+<Limit POST>
+   require valid-user
+</Limit>
+
